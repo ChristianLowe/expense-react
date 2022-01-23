@@ -51,18 +51,27 @@ class AddExpenseModal extends React.Component {
                                         isValid={touched.name && !errors.name}
                                         isInvalid={!!errors.name}
                                     />
+                                    <Form.Control.Feedback type="invalid">
+                                      {errors.name}
+                                    </Form.Control.Feedback>
                                 </Form.Group>
                                 <Form.Group className="mb-3">
                                     <Form.Label>Monthly Cost</Form.Label>
-                                    <Form.Control
-                                        type="text"
-                                        name="cost"
-                                        placeholder="Monthly Cost"
-                                        onChange={handleChange}
-                                        value={values.cost}
-                                        isValid={touched.cost && !errors.cost}
-                                        isInvalid={!!errors.cost}
-                                    />
+                                    <InputGroup hasValidation>
+                                        <InputGroup.Text>$</InputGroup.Text>
+                                        <Form.Control
+                                            type="text"
+                                            name="cost"
+                                            placeholder="Monthly Cost"
+                                            onChange={handleChange}
+                                            value={values.cost}
+                                            isValid={touched.cost && !errors.cost}
+                                            isInvalid={!!errors.cost}
+                                        />
+                                        <Form.Control.Feedback type="invalid">
+                                          {errors.cost}
+                                        </Form.Control.Feedback>
+                                    </InputGroup>
                                 </Form.Group>
                         </Modal.Body>
                         <Modal.Footer>
