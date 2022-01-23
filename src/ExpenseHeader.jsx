@@ -22,7 +22,7 @@ class ExpenseHeader extends React.Component {
             <AddExpenseModal
                 onHide = {() => this.setState({showAddExpenseModal: false})}
                 show = {this.state.showAddExpenseModal}
-                addNewExpenses = {this.props.addNewExpenses}
+                addNewExpense = {this.props.addNewExpense}
             />
         </>
         );

@@ -13,17 +13,17 @@ class Expenses extends React.Component {
 
     }
 
-    addNewExpenses = (newExpenses) => {
-        let expenses = this.state.expenses.slice();
-        this.setState({expenses: expenses.concat(newExpenses)});
+    addNewExpense = (newExpense) => {
+        let expenses = this.state.expenses.slice().concat(newExpense);
+        this.setState({expenses: expenses});
     }
 
     render() {
         return (
         <>
-            <ExpenseHeader addNewExpenses = {this.addNewExpenses}/>
+            <ExpenseHeader addNewExpense = {this.addNewExpense}/>
             <ExpenseList className='expense-list'
-                addNewExpenses = {this.addNewExpenses}
+                addNewExpense = {this.addNewExpense}
                 expenses={this.state.expenses}
                 setExpenses={(newExpenses) => this.setState({expenses: newExpenses})}
             />

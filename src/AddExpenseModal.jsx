@@ -23,7 +23,7 @@ class AddExpenseModal extends React.Component {
 
     addExpenseSubmit = (e) => {
         e.cost = formatCost(e.cost);
-        this.props.addNewExpenses([e])
+        this.props.addNewExpense(e);
         this.props.onHide();
     }
 

@@ -22,7 +22,7 @@ class ExpenseList extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => {
-                    this.props.addNewExpenses(result.expenses);
+                    this.props.setExpenses(result.expenses);
                     this.setState({
                         isLoaded: true,
                     });
