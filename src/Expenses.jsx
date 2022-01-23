@@ -14,7 +14,6 @@ class Expenses extends React.Component {
     }
 
     addNewExpenses = (newExpenses) => {
-        debugger;
         let expenses = this.state.expenses.slice();
         this.setState({expenses: expenses.concat(newExpenses)});
     }
