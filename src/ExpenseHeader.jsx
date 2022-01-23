@@ -19,10 +19,10 @@ class ExpenseHeader extends React.Component {
                 <Button variant='success' onClick={() => this.setState({showAddExpenseModal: true})}>Add Item</Button>
             </Stack>
 
-
             <AddExpenseModal
                 onHide = {() => this.setState({showAddExpenseModal: false})}
                 show = {this.state.showAddExpenseModal}
+                addNewExpense = {this.props.addNewExpense}
             />
         </>
         );

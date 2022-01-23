@@ -1,6 +1,7 @@
 import React from "react";
 import {Alert, ListGroup} from "react-bootstrap";
 import ExpenseModal from "./ExpenseModal";
+import {formatCost} from './Helper'
 
 class ExpenseList extends React.Component {
     constructor(props) {
@@ -8,7 +9,6 @@ class ExpenseList extends React.Component {
         this.state = {
             error: null,
             isLoaded: false,
-            expenses: [],
             activeExpenseIdx: null,
         }
         this.currencyFormatter = new Intl.NumberFormat('en-US', {
@@ -22,9 +22,9 @@ class ExpenseList extends React.Component {
             .then(res => res.json())
             .then(
                 (result) => {
+                    this.props.setExpenses(result.expenses);
                     this.setState({
                         isLoaded: true,
-                        expenses: result.expenses
                     });
                 },
                 (error) => {
@@ -37,7 +37,7 @@ class ExpenseList extends React.Component {
     }
 
     render() {
-        const {error, isLoaded, expenses} = this.state;
+        const {error, isLoaded} = this.state;
         if (error) {
             return <Alert variant='warning'>Error: {error.message}</Alert>;
         } else if (!isLoaded) {
@@ -45,7 +45,7 @@ class ExpenseList extends React.Component {
         } else {
             return (<>
                 <ListGroup>
-                    {expenses.map((expense, idx) => (
+                    {this.props.expenses.map((expense, idx) => (
                         <ListGroup.Item
                             key={expense.name}
                             className="d-flex justify-content-between align-items-start"
@@ -76,31 +76,24 @@ class ExpenseList extends React.Component {
     }
 
     activeExpense = () => {
-        if (this.state.expenses && this.state.activeExpenseIdx !== null) {
-            return this.state.expenses[this.state.activeExpenseIdx]
+        if (this.props.expenses && this.state.activeExpenseIdx !== null) {
+            return this.props.expenses[this.state.activeExpenseIdx]
         }
     }
 
     onModalCostChanged = (cost) => {
-        const costFloat = parseFloat(cost?.replace('$', ''));
-
-        let cents;
-        if (costFloat) {
-            cents = Math.round(costFloat * 100);
-        } else {
-            cents = 0;
-        }
-
-        let expenses = this.state.expenses.slice();
+        let cents = formatCost(cost);
+        let expenses = this.props.expenses.slice();
         expenses[this.state.activeExpenseIdx].cost = cents;
-        this.setState({expenses});
+        this.props.setExpenses(expenses);
     }
 
     onModalClickDelete = () => {
          if (window.confirm('Are you sure you want to delete this expense?')) {
              const idx = this.state.activeExpenseIdx;
-             const expenses = [...this.state.expenses.slice(0, idx), ...this.state.expenses.slice(idx + 1)];
-             this.setState({expenses, activeExpenseIdx: null});
+             const expenses = [...this.props.expenses.slice(0, idx), ...this.props.expenses.slice(idx + 1)];
+             this.setState({activeExpenseIdx: null});
+             this.props.setExpenses(expenses);
          }
     }
 }
