@@ -4,15 +4,40 @@ import ExpenseList from "./ExpenseList";
 import ExpenseHeader from "./ExpenseHeader";
 
 class Expenses extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            expenses: []
+        }
+
+    }
+
+    addNewExpenses = (newExpenses) => {
+        debugger;
+        let expenses = this.state.expenses.slice();
+        this.setState({expenses: expenses.concat(newExpenses)});
+    }
+
+//     removeExpenses = () = > {
+//
+//     }
+
     render() {
         return (
         <>
-            <ExpenseHeader />
-            <ExpenseList className='expense-list' />
+            <ExpenseHeader addNewExpenses = {this.addNewExpenses}/>
+            <ExpenseList className='expense-list'
+                addNewExpenses = {this.addNewExpenses}
+                expenses={this.state.expenses}
+                setExpenses={(newExpenses) => this.setState({expenses: newExpenses})}
+            />
         </>
 
         );
     }
+
+
 }
 
 export default Expenses;
