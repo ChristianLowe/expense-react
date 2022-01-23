@@ -19,10 +19,6 @@ class Expenses extends React.Component {
         this.setState({expenses: expenses.concat(newExpenses)});
     }
 
-//     removeExpenses = () = > {
-//
-//     }
-
     render() {
         return (
         <>
@@ -36,8 +32,6 @@ class Expenses extends React.Component {
 
         );
     }
-
-
 }
 
 export default Expenses;
