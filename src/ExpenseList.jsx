@@ -59,11 +59,14 @@ class ExpenseList extends React.Component {
                     ))}
                 </ListGroup>
                 <ExpenseModal
-                    expenseName = {this.activeExpense()?.name}
+                    show = {this.activeExpense()?.name}
+                    title= {'Edit Expense'}
+                    expense = {this.activeExpense()}
                     expenseCost = {this.formatCents(this.activeExpense()?.cost)}
                     onHide = {() => this.setState({activeExpenseIdx: null})}
                     onCostChanged = {(e) => this.onModalCostChanged(e.target.value)}
                     onClickDelete = {this.onModalClickDelete}
+                    onSubmitModal = {this.editExpense}
                 />
             </>);
         }
@@ -81,11 +84,14 @@ class ExpenseList extends React.Component {
         }
     }
 
-    onModalCostChanged = (cost) => {
-        let cents = formatCost(cost);
+    editExpense = (e) => {
+        let cents = formatCost(e.cost);
+        let expenseName = e.name;
         let expenses = this.props.expenses.slice();
         expenses[this.state.activeExpenseIdx].cost = cents;
+        expenses[this.state.activeExpenseIdx].name = expenseName;
         this.props.setExpenses(expenses);
+        this.setState({activeExpenseIdx: null});
     }
 
     onModalClickDelete = () => {
