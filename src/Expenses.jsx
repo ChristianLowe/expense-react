@@ -23,7 +23,6 @@ class Expenses extends React.Component {
         <>
             <ExpenseHeader addNewExpense = {this.addNewExpense}/>
             <ExpenseList className='expense-list'
-                addNewExpense = {this.addNewExpense}
                 expenses={this.state.expenses}
                 setExpenses={(newExpenses) => this.setState({expenses: newExpenses})}
             />
