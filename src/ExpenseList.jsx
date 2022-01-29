@@ -62,7 +62,6 @@ class ExpenseList extends React.Component {
                     show = {this.activeExpense()?.name}
                     title= {'Edit Expense'}
                     expense = {this.activeExpense()}
-                    expenseCost = {this.formatCents(this.activeExpense()?.cost)}
                     onHide = {() => this.setState({activeExpenseIdx: null})}
                     onCostChanged = {(e) => this.onModalCostChanged(e.target.value)}
                     onClickDelete = {this.onModalClickDelete}

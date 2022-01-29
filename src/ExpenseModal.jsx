@@ -70,8 +70,11 @@ class ExpenseModal extends React.Component {
                                 </Form.Group>
                         </Modal.Body>
                         <Modal.Footer>
-                            <Button variant="danger" onClick={this.props.onHide}>
+                            <Button variant="secondary" onClick={this.props.onHide}>
                                 Cancel
+                            </Button>
+                            <Button variant="danger" onClick={this.props.onClickDelete}>
+                                Delete Expense
                             </Button>
                             <Button type="submit" variant="primary">
                                 Submit
