@@ -8,7 +8,8 @@ class Expenses extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            expenses: []
+            expenses: [],
+            userId: 'asdf'
         }
 
     }
@@ -21,9 +22,14 @@ class Expenses extends React.Component {
     render() {
         return (
         <>
-            <ExpenseHeader addNewExpense = {this.addNewExpense}/>
+            <ExpenseHeader
+                addNewExpense = {this.addNewExpense}
+                expenses={this.state.expenses}
+                userId={this.state.userId}
+            />
             <ExpenseList className='expense-list'
                 expenses={this.state.expenses}
+                userId={this.state.userId}
                 setExpenses={(newExpenses) => this.setState({expenses: newExpenses})}
             />
         </>
