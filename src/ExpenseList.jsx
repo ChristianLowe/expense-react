@@ -18,7 +18,7 @@ class ExpenseList extends React.Component {
     }
 
     componentDidMount() {
-        fetch("https://dev.expenseapi.chrislowe.io/users/asdf/expenses")
+        fetch("https://dev.expenseapi.chrislowe.io/users/" + this.props.userId + "/expenses")
             .then(res => res.json())
             .then(
                 (result) => {
